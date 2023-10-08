@@ -19,4 +19,4 @@ jobs:
         server: ftp.rhamon.com
         username: ftp@rhamon.com
         password: ${{ secrets.password }}
-        local-dir: /home2/rhamon55/public_html/repo/
+        local-dir: /home/rhamon55/public_html/repo/
