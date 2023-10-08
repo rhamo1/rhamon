@@ -11,7 +11,35 @@ jobs:
           hostname: 'https://ftp.rhamon.com'
           cpanel_token: '${{ secrets.CPANEL_TOKEN }}'
           cpanel_username: 'ftp@rhamon.com'
-          repository_root: '/home2/rhamon55/rhamon.cpanel'
+          repository_root: '/home2/rhamon55/public_html/repo'
           branch: main
       - name: echo deploy-duration
         run: echo "Deployment took ${{ steps.deploy.outputs.duration }} milliseconds"
+
+
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: 🔨 Build Project
+      run: |
+        npm install
+        npm run build
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.rhamon.com
+        username: ftp@rhamon.com
+        password: ${{ secrets.password }}
+        local-dir: /home2/rhamon55/public_html/repo
