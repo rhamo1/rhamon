@@ -17,9 +17,9 @@ jobs:
       id: deploy
       uses: pinkasey/cpanel-repository-action@v1.0.0
       with:
-        hostname: 'https://ftp.rhamon.com'
+        hostname: 'br1128.hostgator.com.br'
         cpanel_token: '${{ secrets.CPANEL_TOKEN }}'
-        cpanel_username: 'ftp@rhamon.com'
+        cpanel_username: 'ftprhamon@rhamon.com'
         repository_root: '/home2/rhamon55/public_html/repo'
         branch: main
     - name: echo deploy-duration
