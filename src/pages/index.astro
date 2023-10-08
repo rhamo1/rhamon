@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import header from "../assets/pics/gospel.png";
+import gospel from "../assets/gspl.gif";
+import Button from "../components/Button.astro";
 ---
 
 <!doctype html>
@@ -15,6 +17,24 @@ import header from "../assets/pics/gospel.png";
     <title>rhamon</title>
   </head>
   <body>
-    <Image src={header} alt="aaa" />
+    <div class="flex flex-col items-center">
+      <div class="header">
+        <Image src={header} alt="" />
+
+        <Image src={gospel} alt="abc" />
+      </div>
+      <div>
+        <Button>
+          <a href={'instagram.com/gospeldownloads'} target="_blank">insta</a>
+        </Button>
+      </div>
+    </div>
   </body>
 </html>
+
+<style>
+  .header{
+    width: 90%;
+    padding: 10px;
+  }
+</style>
