@@ -1,1 +1,26 @@
-
+on: push
+name: ðŸš€ Deploy website on push
+jobs:
+  web-deploy:
+    name: ðŸŽ‰ Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: ðŸšš Get latest code
+      uses: actions/checkout@v3
+      
+    - name: ðŸ”¨ Build Project
+      run: |
+        npm install
+        npm run build
+    
+    - name: Deploy to cPanel
+      id: deploy
+      uses: pinkasey/cpanel-repository-action@v1.0.0
+      with:
+        hostname: 'br1128.hostgator.com.br'
+        cpanel_token: '${{ secrets.CPANEL_TOKEN }}'
+        cpanel_username: 'ftprhamon@rhamon.com'
+        repository_root: '/home2/rhamon55/public_html/repo'
+        branch: main
+    - name: echo deploy-duration
+      run: echo "Deployment took ${{ steps.deploy.outputs.duration }} milliseconds"
