@@ -1,14 +1,14 @@
 on: push
-name: ðŸš€ Deploy website on push
+name: 🚀 Deploy website on push
 jobs:
   web-deploy:
-    name: ðŸŽ‰ Deploy
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: ðŸšš Get latest code
+    - name: 🚚 Get latest code
       uses: actions/checkout@v3
       
-    - name: ðŸ”¨ Build Project
+    - name: 🔨 Build Project
       run: |
         npm install
         npm run build
