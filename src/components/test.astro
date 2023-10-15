@@ -1,0 +1,35 @@
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js"></script>
+
+<script is:inline>
+let cam;
+let delta = 0.01;
+let x = 0;
+let y = 0;
+
+function setup() {
+    createCanvas(windowWidth - 20, windowHeight - 50, WEBGL);
+    normalMaterial();
+    cam = createCamera();
+    cam.pan(-1);
+
+    background(200);
+}
+
+function draw() {
+    x += 0.2;
+    y += 0.1;
+
+    cam.pan(delta);
+
+    if (frameCount % 220 === 0) {
+        delta *= -1;
+    }
+
+    rotateX(frameCount * 0.04);
+    translate(-100, x, y);
+    box(100);
+    translate(y, 100, x);
+    box(100);
+}
+
+</script>
