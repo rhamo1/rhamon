@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import musicaeletronica from "../assets/pics/musicaeletronica.jpg";
+import { Image } from "astro:assets";
+import Button from "../components/Button.astro";
+import MusicPlayer from "../components/MusicPlayer.astro"
+import Audio from "../components/Audio.astro";
+---
+
+<Layout>
+  <div>
+    <Image src={musicaeletronica} class="m-4" alt="abc" />
+  </div>
+
+  <Audio />
+
+  <!-- <MusicPlayer /> -->
+
+  <div class="flex flex-col gap-4 m-4">
+    <Button>
+      <a href={"/"}>home</a>
+    </Button>
+  </div>
+</Layout>
