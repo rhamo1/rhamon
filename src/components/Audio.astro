@@ -1,8 +1,54 @@
 ---
-import music from '../assets/06-Urban-Wax-Rollin-Intelligence.mp3'
+import music from "../assets/06-Urban-Wax-Rollin-Intelligence.mp3";
 ---
 
-<audio controls>
-  <source src={music} type="audio/mpeg" />
-   Your browser does not support the audio tag.
-</audio>
+<div>
+  <audio controls>
+    <source src={music} type="audio/mpeg" />
+     Your browser does not support the audio tag.
+  </audio>
+
+  <div id="app" style="height: 100vh">
+    <!-- Webamp will attempt to center itself within this div -->
+  </div>
+  <script is:inline src="https://unpkg.com/webamp@1.5.0/built/webamp.bundle.min.js"></script>
+  <script is:inline src="https://unpkg.com/butterchurn@2.6.7/lib/butterchurn.min.js"></script>
+  <script is:inline src="https://unpkg.com/butterchurn-presets@2.4.7/lib/butterchurnPresets.min.js"></script>
+  <script is:inline>
+    const Webamp = window.Webamp;
+    new Webamp({
+      initialTracks: [
+        {
+          metaData: {
+            artist: "DJ Mike Llama",
+            title: "Llama Whippin' Intro",
+          },
+          // NOTE: Your audio file must be served from the same domain as your HTML
+          // file, or served with permissive CORS HTTP headers:
+          // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+          url: "https://rhamon.com/_astro/06-Urban-Wax-Rollin-Intelligence.6495651a.mp3",
+          duration: 5.322286,
+        },
+      ],
+      __butterchurnOptions: {
+        importButterchurn: () => Promise.resolve(window.butterchurn),
+        getPresets: () => {
+          const presets = window.butterchurnPresets.getPresets();
+          return Object.keys(presets).map((name) => {
+            return {
+              name,
+              butterchurnPresetObject: presets[name],
+            };
+          });
+        },
+        butterchurnOpen: true,
+      },
+      __initialWindowLayout: {
+        main: { position: { x: 0, y: 0 } },
+        equalizer: { position: { x: 0, y: 116 } },
+        playlist: { position: { x: 0, y: 232 }, size: [0, 4] },
+        milkdrop: { position: { x: 275, y: 0 }, size: [7, 12] },
+      },
+    }).renderWhenReady(document.getElementById("app"));
+  </script>
+</div>
