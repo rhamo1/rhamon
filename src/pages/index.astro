@@ -3,19 +3,41 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
 import gospel from "../assets/gspl.gif";
+import banner from "../assets/pics/8.png";
 import Button from "../components/Button.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div >
-
+  <div>
     <Image src={gospel} alt="abc" />
   </div>
 
+  <div class="flex flex-col gap-4 m-4">
+    <Button>
+      <a href={"/music/"}>music</a>
+    </Button>
+    <Button>
+      <a href={"/canvas/"}>something...</a>
+    </Button>
+    <Button>
+      <a href={"https://instagram.com/gospeldownloads"} target="_blank">instagram</a>
+    </Button>
+    <Button>
+      <a href={"https://soundcloud.com/gospel144"} target="_blank">soundcloud</a>
+    </Button>
+    <Button>
+      <a href={"https://www.twitch.tv/gospeldownloads"} target="_blank">twitch</a>
+    </Button>
+    <Button>
+      <a href={"https://github.com/rhamo1"} target="_blank">github</a>
+    </Button>
+    <Button>
+      <a href={"https://gospeldownloads.tumblr.com/"} target="_blank">tumblr</a>
+    </Button>
+  </div>
 
   <div>
-    <Button>
-      <a href={"instagram.com/gospeldownloads"} target="_blank">instagram</a>
-    </Button>
+    <Image src={banner} class="m-4" alt="abc" />
   </div>
 </Layout>

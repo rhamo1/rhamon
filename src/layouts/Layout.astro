@@ -18,20 +18,14 @@ import Button from "../components/Button.astro";
   </head>
   <body>
     <div class="flex flex-col items-center">
-      <div class="header">
-        <Image src={header} alt="" />
-
+      <div class="header flex sticky top-0 justify-center w-full mb-[25px]">
+        <Image class="w-[600px]" src={header} alt="" />
       </div>
 
-      <slot />
+      <div class="flex flex-col items-center">
+        <slot />
+      </div>
 
     </div>
   </body>
 </html>
-
-<style>
-  .header {
-    width: 90%;
-    padding: 10px;
-  }
-</style>
