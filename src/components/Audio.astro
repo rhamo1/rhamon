@@ -1,13 +1,9 @@
 ---
 import music from "../assets/06-Urban-Wax-Rollin-Intelligence.mp3";
+import music2 from "../assets/music/teto gelado - faz o vuk vuk gospel refix [free dl].mp3";
 ---
 
 <div>
-  <audio controls>
-    <source src={music} type="audio/mpeg" />
-     Your browser does not support the audio tag.
-  </audio>
-
   <div id="app" style="height: 100vh">
     <!-- Webamp will attempt to center itself within this div -->
   </div>
@@ -20,14 +16,14 @@ import music from "../assets/06-Urban-Wax-Rollin-Intelligence.mp3";
       initialTracks: [
         {
           metaData: {
-            artist: "DJ Mike Llama",
-            title: "Llama Whippin' Intro",
+            artist: "gospel",
+            title: "teto gelado",
           },
           // NOTE: Your audio file must be served from the same domain as your HTML
           // file, or served with permissive CORS HTTP headers:
           // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-          url: "https://rhamon.com/_astro/06-Urban-Wax-Rollin-Intelligence.6495651a.mp3",
-          duration: 5.322286,
+          url: "https://rhamon.com/_astro/teto%20gelado%20-%20faz%20o%20vuk%20vuk%20gospel%20refix%20_free%20dl_.b758cc59.mp3",
+          duration: 145.2,
         },
       ],
       __butterchurnOptions: {
@@ -44,10 +40,10 @@ import music from "../assets/06-Urban-Wax-Rollin-Intelligence.mp3";
         butterchurnOpen: true,
       },
       __initialWindowLayout: {
-        main: { position: { x: 0, y: 0 } },
-        equalizer: { position: { x: 0, y: 116 } },
-        playlist: { position: { x: 0, y: 232 }, size: [0, 4] },
-        milkdrop: { position: { x: 275, y: 0 }, size: [7, 12] },
+        main: { position: { x: 0, y: -400 } },
+        equalizer: { position: { x: 0, y: -290 } },
+        playlist: { position: { x: 0, y: -175 }, size: [0, 4] },
+        milkdrop: { position: { x: 275, y: -400 }, size: [7, 12] },
       },
     }).renderWhenReady(document.getElementById("app"));
   </script>

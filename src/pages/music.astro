@@ -8,18 +8,16 @@ import Audio from "../components/Audio.astro";
 ---
 
 <Layout>
-  <div>
-    <Image src={musicaeletronica} class="m-4" alt="abc" />
-  </div>
-
-
   <Audio />
+  <div>
+    <Image src={musicaeletronica} class="m-4 mb-20" alt="abc" />
+  </div>
 
   <!-- <MusicPlayer /> -->
 
-  <div class="flex flex-col gap-4 m-4">
-    <Button>
-      <a href={"/"}>home</a>
-    </Button>
-  </div>
+    <div class="fixed m-4 bottom-0">
+      <Button>
+        <a href={"/"}>home</a>
+      </Button>
+    </div>
 </Layout>
