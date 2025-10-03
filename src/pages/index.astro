@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import header from "../assets/pics/gospel.png";
 import gospel from "../assets/gspl.gif";
 import Button from "../components/Button.astro";
+import Ascii from "../components/ascii.astro";
 ---
 
 <!doctype html>
@@ -25,15 +26,16 @@ import Button from "../components/Button.astro";
       </div>
       <div>
         <Button>
-          <a href={'instagram.com/gospeldownloads'} target="_blank">instagram</a>
+          <a href={"instagram.com/gospeldownloads"} target="_blank">instagram</a>
         </Button>
+        <Ascii />
       </div>
     </div>
   </body>
 </html>
 
 <style>
-  .header{
+  .header {
     width: 90%;
     padding: 10px;
   }

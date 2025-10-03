@@ -1,0 +1,143 @@
+﻿---
+const streams = [
+  {
+    id: "principal",
+    name: "Louvor 24h",
+    description: "Selecao continua de louvores e adoracao.",
+    url: "https://stream-59.zeno.fm/7y0g6b23t0hvv?zs=VI9pyv63QFqq3v9u3Q0N3w",
+  },
+  {
+    id: "alternativa",
+    name: "Adoracao acustica",
+    description: "Faixas ao vivo com foco em voz e violao.",
+    url: "https://stream-40.zeno.fm/0dse6hpm4hhvv?zs=jMm9SBBYQgu3VwPdw5g6yw",
+  },
+  {
+    id: "energetica",
+    name: "Gospel energetico",
+    description: "Batidas mais animadas para sua rotina.",
+    url: "https://stream-45.zeno.fm/eqp9kw0vyceuv?zs=A3yAFXy_Q8S1WFbQOrE1ng",
+  },
+];
+
+const defaultStream = streams[0];
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tocador 24h | Radio Louvor</title>
+    <meta
+      name="description"
+      content="Ouca louvor e adoracao 24 horas com a radio online do projeto Rhamon."
+    />
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-50">
+    <main class="mx-auto flex min-h-screen max-w-5xl flex-col gap-10 px-6 py-16">
+      <header class="space-y-4 text-center">
+        <p class="text-sm uppercase tracking-[0.35em] text-blue-300/70">Sempre no ar</p>
+        <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Tocador de musica 24 horas</h1>
+        <p class="mx-auto max-w-2xl text-base text-slate-300">
+          Aperte o play e mantenha a trilha sonora do seu dia ligada. Selecione uma das
+          estacoes abaixo para alternar instantaneamente entre diferentes estilos de louvor.
+        </p>
+      </header>
+
+      <section class="grid gap-6 lg:grid-cols-[1.2fr_minmax(0,1fr)] lg:items-start">
+        <div class="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-blue-900/30 backdrop-blur">
+          <div class="flex items-center justify-between gap-4">
+            <div class="space-y-1">
+              <p class="text-sm uppercase tracking-[0.25em] text-blue-300/80">Agora tocando</p>
+              <h2 id="currentStream" class="text-2xl font-medium text-white">{defaultStream.name}</h2>
+            </div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-blue-500/20 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blue-200">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-200 opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-blue-300"></span>
+              </span>
+              Live 24/7
+            </span>
+          </div>
+
+          <div class="rounded-2xl bg-black/40 p-6 text-center">
+            <audio
+              id="radioPlayer"
+              class="w-full"
+              src={defaultStream.url}
+              controls
+              autoplay
+              preload="none"
+            >
+              Seu navegador nao suporta o player de audio. Use o link adicional abaixo.
+            </audio>
+            <p class="mt-3 text-xs text-slate-400">
+              Caso o audio nao inicie automaticamente, clique em play ou selecione outra estacao.
+            </p>
+          </div>
+
+          <a
+            id="externalLink"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-5 py-3 text-sm font-medium text-blue-100 transition hover:border-blue-400/60 hover:bg-blue-400/10"
+            href={defaultStream.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Abrir stream em nova aba
+          </a>
+        </div>
+
+        <aside class="space-y-4 rounded-3xl border border-white/5 bg-white/5 p-6 backdrop-blur">
+          <h3 class="text-lg font-semibold text-white">Escolha a estacao</h3>
+          <ul class="space-y-3">
+            {streams.map((station) => (
+              <li>
+                <button
+                  class="w-full rounded-2xl border border-transparent bg-white/5 p-4 text-left transition hover:border-blue-400/50 hover:bg-blue-400/10 focus-visible:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+                  data-station={station.id}
+                  data-stream={station.url}
+                  data-name={station.name}
+                  data-description={station.description}
+                >
+                  <p class="font-medium text-white">{station.name}</p>
+                  <span class="text-sm text-slate-300">{station.description}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p class="text-xs text-slate-400">
+            Os streams utilizados sao fornecidos por radios online publicas. Substitua as URLs por fontes
+            oficiais caso possua a sua radio propria.
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      const player = document.getElementById("radioPlayer");
+      const streamButtons = document.querySelectorAll("[data-stream]");
+      const title = document.getElementById("currentStream");
+      const externalLink = document.getElementById("externalLink");
+
+      streamButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const stream = button.dataset.stream;
+          const name = button.dataset.name;
+
+          if (player.src !== stream) {
+            player.pause();
+            player.src = stream;
+            player.currentTime = 0;
+          }
+
+          title.textContent = name;
+          externalLink.href = stream;
+
+          player.play().catch(() => {
+            /* Alguns navegadores bloqueiam autoplay; o usuario pode iniciar manualmente. */
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
